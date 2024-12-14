@@ -1,0 +1,11 @@
+{
+    "name": "ItemManager",
+    "alias": "itemmanager",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ItemManager\\Providers\\ItemManagerServiceProvider"
+    ],
+    "files": []
+}

@@ -10,8 +10,9 @@
 
 <body data-layout-mode="light" class="bg-gray-100 dark:bg-gray-900 bg-[url('../images/bg-body.png')] dark:bg-[url('../images/bg-body-2.png')]">
     @include('layouts.navbar')
-    @yield('content')
-    @include('layouts.footer')
+    <div class="container mx-auto px-2 min-h-[calc(100vh-123px)] relative mt-16">
+        @yield('content')
+        @include('layouts.footer')
+    </div>
 </body>
-
 </html>

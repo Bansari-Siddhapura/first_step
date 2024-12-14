@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/itemmanager",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ItemManager\\": "app/",
+            "Modules\\ItemManager\\Database\\Factories\\": "database/factories/",
+            "Modules\\ItemManager\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\ItemManager\\Tests\\": "tests/"
+        }
+    }
+}
