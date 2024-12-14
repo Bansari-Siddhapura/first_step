@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\ItemManager\Http\Controllers\ItemManagerController;
+use Modules\ItemManager\Http\Controllers\ItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +19,10 @@ use Modules\ItemManager\Http\Controllers\ItemManagerController;
 // });
 
 
-Route::view('/items/show', 'itemmanager::items.show')->name('items.show');
-Route::view('/items/create', 'itemmanager::items.create')->name('items.create');
+Route::prefix('items')->group(function () {
+
+    Route::get('', [ItemsController::class, 'index'])->name('items.show');
+    Route::get('/create/{id?}', [ItemsController::class, 'create'])->name('items.create');
+    Route::post('/store', [ItemsController::class, 'store'])->name('items.store');
+    Route::get('/destroy/{id}', [ItemsController::class, 'destroy'])->name('items.destroy');
+});
