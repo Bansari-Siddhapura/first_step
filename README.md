@@ -1,66 +1,162 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Validations
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 3 ways
 
-## About Laravel
+- 1.validations inside controller
+- 2.validation inside request file
+- 3.custom validation Rules
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 1. validations inside controller
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- we can use validate() of request instance for apply validations :
+- it takes array as a parameter and array contains key and values
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  - key : it is your database column name
+  - value : it is your validations that are applied to that column - we can separate multiple validation either '|'' or we pass multiple validations inside single array
 
-## Learning Laravel
+  - in array : 'item_id' => ['required', 'unique:items_master,item_id,' . $id],
+  - using '|' : 'item_id' => 'required|unique:items_master,item_id,' . $id,
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- if we want to pass the custom error message then we need to pass that inside second array.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+for example :
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```php
+ public function store(Request $request)
+    {
+        $id = $request->id ?? '';
+         $request->validate([
+            'item_id' => ['required', 'unique:items_master,item_id,' . $id],
+            'item_name' => 'required',
+            'version' => 'required',
+            'category' => 'required',
+            'color' => 'required',
+            'image_thumbnail_link' => 'required',
+            'license_update' => 'nullable',
+            'serve_latest_updates' => 'nullable'
+        ], [
+            'item_id.required' => 'item id required',
+            'item_id.unique' => 'item_id must be unique'
+        ]);
 
-## Laravel Sponsors
+        //your logics
+         return redirect()->route('items.show');
+    }
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. validation using request file
 
-### Premium Partners
+- it provides 3 methods:
+  - 1.rules() : it returns the set of rules in array.
+  - 2.messages() : we can create this method manually for customizing error messages.
+  - 3.authorize() : it determine if the user is authorized to make this request. it return true or false if true then if all validation rules are matches then pass request to the controller method and if false then after validation checking it throws 403(this action is unauthorized)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```php
+ public function rules(): array
+    {
+        $id = $this->id ?? '';
+        return [
+            'item_id' => 'required|unique:items_master,item_id,' . $id,
+            'item_name' => 'required',
+            'version' => 'required',
+            'category' => 'required',
+            'color' => 'required',
+            'image_thumbnail_link' => 'required',
+            'license_update' => 'nullable',
+            'serve_latest_updates' => 'nullable'
+        ];
+    }
 
-## Contributing
+    public function messages()
+    {
+        return [
+            'item_id.required' => 'item id required',
+            'item_id.unique' => 'item_id must be unique'
+        ];
+    }
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    public function authorize(): bool
+    {
+        return true;
+    }
+```
 
-## Code of Conduct
+### 3. custom validations
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### 1. create custom rule
 
-## Security Vulnerabilities
+- if we want to create globally :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```php
+    php artisan make:rule repeatOnly2
+```
 
-## License
+- if we want to create in module :
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```php
+    php artisan module:make-rule repeatOnlyTwoTime ItemManager
+```
+
+- how can use custom validation ?
+
+for example :
+
+- i want to make my custom validation like item name only repeat 2 time if user enter same item name third time then validation rise.
+
+- Request File :
+
+```php
+ 'item_name' => ['required','string',new RepeatOnlyTwoTime],
+```
+
+- repeatOnlyTwoTime.php :
+
+```php
+class RepeatOnlyTwoTime implements ValidationRule
+{
+    /**
+     * Run the validation rule.
+     */
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
+        $item_names = ItemMaster::pluck('item_name')->all();
+        $number_of_values = array_count_values($item_names);
+
+        if (array_key_exists($value, $number_of_values) == $value) {
+            $count = ItemMaster::where('item_name', $value)->count();
+            //dd($count);
+            if ($count >= 2) {
+                $fail('Item name repeated 3rd time');
+            }
+        }
+    }
+}
+```
+
+### list of validations
+
+- required : required
+- unique : another way to pass unique validation
+    `php
+        Rule::unique('items_master')->ignore($id)
+    `
+- size : size:5
+- regex : regex:/[a-zA-Z0-9]{1,3}\.\d{2}\.\d{1,2}/
+- nullable : nullable
+- contains : contains:food,cloth (it is useful when we want to must contain this value)
+- between : between:5,10 (it works like size. In this example min value 5 and max value 10 so its length between 5 to 10)
+- digits : digits:5 (it works like size but it only allow digits with length or size)
+- digits_between : digits_between:5,10 (it only allows digits length between 5 to 10)
+- lowercase : lowercase
+- uppercase : uppercase
+- prohibited : it allows to must be empty field
+- url : url:http,https
+- exclude_if : exclude_if:item_name,books (it exclueds the validations of that fields where it applied if item_name is books)
+
+- image validations :
+
+  - image : must be an image in jpg, jpeg, png, bmp, gif, svg, or webp.
+  - extentions : mimes:jpg,png (that only allows jpg and png images). , mimes:docx,pdf (that only allow docx and pdf files)
+  - file : must be a successfully uploaded file
+  - file types : File::types(['sql', 'jpg','png'])->min(30)->max(12 \* 1024)
+  - dimensions : File::image()->min(30)->max(12 \* 1024)->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500))

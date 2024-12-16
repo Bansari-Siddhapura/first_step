@@ -35,11 +35,9 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($items as $item)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-900/20">
-
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $item->id }}
                         </td>
@@ -56,13 +54,11 @@
                             {{ $item->category}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ route('items.create',['id' => $item->id])}}" class="font-medium text-blue-600 dark:text-blue-500 text-lg me-4"><i class="ti ti-pencil "></i></a>
+                            <a href="{{ route('items.create',['id' => $item->id])}}" class="font-medium text-blue-600 dark:text-blue-500 text-lg"><i class="ti ti-pencil "></i></a>
                             <a href="{{ route('items.destroy' , ['id' => $item->id])}}" class="font-medium text-blue-600 dark:text-blue-500 text-lg text-red-600" name="delete"><i class="ti ti-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach
-
-
                 </tbody>
             </table>
             <!-- pagination -->

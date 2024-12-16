@@ -12,7 +12,7 @@
             id="mobile-menu-2">
             <ul
                 class="font-body mt-4 flex flex-col font-medium md:mt-0 md:flex-row md:text-sm md:font-medium space-x-0 md:space-x-4 lg:space-x-6 xl:space-x-8 navbar">
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <button
                         id="navDashboardLink"
                         data-dropdown-toggle="navDashboard"
@@ -20,7 +20,7 @@
                         <i class="ti ti-smart-home mr-1 pb-1 text-lg"></i> Dashboards
                         <i class="ti ti-chevron-down ml-auto lg:ml-1"></i>
                     </button>
-                    <!-- Dropdown menu -->
+                     Dropdown menu 
                     <div
                         id="navDashboard"
                         class="dropdown-menu z-10 my-1 hidden w-full list-none divide-y divide-gray-100 rounded bg-gray-800 md:bg-white text-base shadow border border-slate-700 md:border-white dark:border-slate-700/50 dark:divide-gray-600 dark:bg-gray-900 md:w-44 dropdown-menu">
@@ -39,7 +39,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
                 <li class="dropdown">
                     <button
