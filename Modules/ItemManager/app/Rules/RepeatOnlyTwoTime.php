@@ -12,7 +12,7 @@ class RepeatOnlyTwoTime implements ValidationRule
      * Run the validation rule.
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
-    {
+    {      
         $item_names = ItemMaster::pluck('item_name')->all();
         $number_of_values = array_count_values($item_names);
 

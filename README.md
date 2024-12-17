@@ -95,7 +95,7 @@ for example :
 
 - if we want to create in module :
 
-  - it created at Modules/ItemManager/app/Rules/RepeatOnlyTwoTime.php  
+  - it created at Modules/ItemManager/app/Rules/RepeatOnlyTwoTime.php
 
 ```php
     php artisan module:make-rule repeatOnlyTwoTime ItemManager
@@ -138,13 +138,64 @@ class RepeatOnlyTwoTime implements ValidationRule
 }
 ```
 
+##### how to pass extra parameters to the custom rule ?
+
+for example : i want to make validation that is same item_id with same category are inserted only 2 times but if 3rd time user want to enter same item_id and category that are also recorded 2 times in database then validation rise :
+
+- Request file where i pass extra parameters like this :
+
+```php
+    $id = $this->id ?? '';
+    $category = $this->category;
+    return [
+        'item_id' => ['required', 'numeric', 'digits_between:5,10',new IdRepeatForCategory($category,$id)],
+        'other validations....'
+    ]
+```
+
+- custom rule file :
+
+```php
+class IdRepeatForCategory implements ValidationRule
+{
+
+    public $category, $id;
+    public function __construct($category, $id)
+    {
+        $this->category = $category;
+        $this->id = $id;
+    }
+
+    public function validate(string $attribute, mixed $value, Closure $fail): void
+    {
+        $count = ItemMaster::where('item_id', $value)->where('category', $this->category)->count();
+        if ($this->id == '') {
+            if ($count >= 2) {
+                $fail('this item id is repeated 3rd time for that category');
+            }
+        } else {
+            $found_column = ItemMaster::where('item_id', $value)->where('category', $this->category)->where('id', $this->id)->count();
+            if ($found_column >= 1) {
+                if ($count >= 3) {
+                    $fail('this item id is repeated 3rd time for that category');
+                }
+            } else {
+                if ($count >= 2) {
+                    $fail('this item id is repeated 3rd time for that category');
+                }
+            }
+        }
+    }
+}
+```
+
 ### list of validations
 
 - required : required
 - unique : another way to pass unique validation
     `php
-        Rule::unique('items_master')->ignore($id)
-    `
+    Rule::unique('items_master')->ignore($id)
+`
 - size : size:5
 - regex : regex:/[a-zA-Z0-9]{1,3}\.\d{2}\.\d{1,2}/
 - nullable : nullable

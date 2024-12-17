@@ -31,10 +31,10 @@ class ItemsController extends Controller
     {
         $data = $request->all();
       
-        $data['category'] = implode(',',$data['category']);
+        //$data['category'] = implode(',',$data['category']);
         $data['license_update'] = $data['license_update'] ?? '0';
         $data['serve_latest_updates'] = $data['serve_latest_updates'] ?? '0';
-       // dd($data);
+        //dd($data['category']);
         $message = $data['id'] ? 'item update successfully' : 'item insert successfully';
         ItemMaster::updateOrCreate(['id' => $data['id']], $data);
         flash()->option('position', 'bottom-right')->option('timeout', 3000)->success($message);

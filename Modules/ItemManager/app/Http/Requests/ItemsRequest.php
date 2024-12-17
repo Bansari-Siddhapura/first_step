@@ -5,6 +5,7 @@ namespace Modules\ItemManager\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use Modules\ItemManager\Rules\IdRepeatForCategory;
 use Modules\ItemManager\Rules\RepeatOnlyTwoTime;
 
 class ItemsRequest extends FormRequest
@@ -15,12 +16,13 @@ class ItemsRequest extends FormRequest
     public function rules(): array
     {
         $id = $this->id ?? '';
-        // dd($this);
+        //dd($this->category);
+        $category = $this->category;
         return [
-            'item_id' => ['required', 'numeric', 'digits_between:5,10', Rule::unique('items_master')->ignore($id)],
+            'item_id' => ['required', 'numeric', 'digits_between:5,10',new IdRepeatForCategory($category,$id)],
             'item_name' => ['required', 'string', new RepeatOnlyTwoTime],
             'version' => 'required|regex:/[a-zA-Z0-9]{1,3}\.\d{2}\.\d{1,2}/',
-            'category' => 'required|array|min:2|contains:food',
+            'category' => ['required'],
             'color' => 'exclude_if:item_name,books|required',
             'image_thumbnail_link' => 'required|url:http,https',
             'profile' => ['required', File::image()->min(30)->max(12 * 1024)->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500))],

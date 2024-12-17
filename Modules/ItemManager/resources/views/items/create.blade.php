@@ -41,9 +41,8 @@
                 <div class="grid xl:grid-cols-2 xl:gap-6">
                     <div class="relative z-0 mb-6 w-full group">
                         <label for="category" class="label">Category</label>
-                        <select name="category[]" id=""
-                            class="form-control @error('category') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
-                            multiple>
+                        <select name="category" id=""
+                            class="form-control @error('category') bg-red-50 border border-red-500 placeholder-red-700  @enderror">
                             <option value="" selected disabled>select category</option>
                             <option value="cloth">Cloth</option>
                             <option value="food">Food</option>
