@@ -87,11 +87,15 @@ for example :
 
 - if we want to create globally :
 
+  - it created at app\Rules\repeatOnly2.php
+
 ```php
     php artisan make:rule repeatOnly2
 ```
 
 - if we want to create in module :
+
+  - it created at Modules/ItemManager/app/Rules/RepeatOnlyTwoTime.php  
 
 ```php
     php artisan module:make-rule repeatOnlyTwoTime ItemManager
@@ -119,6 +123,7 @@ class RepeatOnlyTwoTime implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+
         $item_names = ItemMaster::pluck('item_name')->all();
         $number_of_values = array_count_values($item_names);
 
@@ -160,3 +165,17 @@ class RepeatOnlyTwoTime implements ValidationRule
   - file : must be a successfully uploaded file
   - file types : File::types(['sql', 'jpg','png'])->min(30)->max(12 \* 1024)
   - dimensions : File::image()->min(30)->max(12 \* 1024)->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500))
+
+```php
+ return [
+            'item_id' => ['required', 'numeric', 'digits_between:5,10', Rule::unique('items_master')->ignore($id)],
+            'item_name' => ['required', 'string', new RepeatOnlyTwoTime],
+            'version' => 'required|regex:/[a-zA-Z0-9]{1,3}\.\d{2}\.\d{1,2}/',
+            'category' => 'required|array|min:2|contains:food',
+            'color' => 'exclude_if:item_name,books|required',
+            'image_thumbnail_link' => 'required|url:http,https',
+            'profile' => ['required', File::image()->min(30)->max(12 * 1024)->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500))],
+            'license_update' => 'nullable|boolean',
+            'serve_latest_updates' => 'nullable|boolean'
+        ];
+```
