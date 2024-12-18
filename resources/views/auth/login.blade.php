@@ -66,6 +66,7 @@
             <form method="POST" action="{{ route('login') }}" class="p-6">
                 @csrf
 
+                {{-- Email Field --}}
                 <div>
                     <label for="email" class="label">Email</label>
                     <input type="email" id="email" class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50"
@@ -73,6 +74,7 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
+                {{-- Password Field --}}
                 <div class="mt-4">
                     <label for="password" class="label">Your password</label>
                     <input type="password" id="password" class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50"
@@ -80,12 +82,15 @@
                         autocomplete="current-password">
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
+
+                {{-- Forget Password link --}}
                 @if (Route::has('password.request'))
                     <a class="text-xs text-gray-600 hover:underline" href="{{ route('password.request') }}">
                         {{ __('Forgot password?') }}
                     </a>
                 @endif
 
+                {{-- Remember me --}}
                 <div class="block mt-3">
                     <label class="custom-label">
                         <div
@@ -97,6 +102,8 @@
                         <span class="text-sm text-slate-500 font-medium">{{ __('Remember me') }}</span>
                     </label>
                 </div>
+
+                {{-- Login Button --}}
                 <div class="mt-6">
                     <button type="submit"
                         class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">

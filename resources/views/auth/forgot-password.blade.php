@@ -45,6 +45,7 @@
             <x-auth-session-status class="mb-4" :status="session('status')" />
             <form class="p-6" action="{{ route('password.email') }}">
                 @csrf
+                {{-- Email Field --}}
                 <div>
                     <label for="email" class="label">Email</label>
                     <input type="email" id="email"

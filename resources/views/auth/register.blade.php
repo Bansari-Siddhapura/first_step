@@ -17,27 +17,32 @@
 
             <form class="p-6" method="POST" action="{{ route('register') }}">
                 @csrf
+
+                {{-- Username Field --}}
                 <div>
                     <label for="name" class="label">Username</label>
-                    <input type="text" id="name"
-                        class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50" placeholder="Enter Username"
-                        name="name" :value="old('name')" required>
+                    <input type="text" id="name" class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50"
+                        placeholder="Enter Username" name="name" :value="old('name')" required>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
+
+                {{-- Email Field --}}
                 <div>
                     <label for="email" class="label">Email</label>
-                    <input type="email" id="email"
-                        class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50" placeholder="Enter Email"
-                        name="email" :value="old('email')" required>
+                    <input type="email" id="email" class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50"
+                        placeholder="Enter Email" name="email" :value="old('email')" required>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
+
+                {{-- Password Field --}}
                 <div class="mt-4">
                     <label for="password" class="label">Your password</label>
-                    <input type="password" id="password"
-                        class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50" name="password"
-                        placeholder="Enter Password" required>
+                    <input type="password" id="password" class="inputbox dark:bg-slate-800/60 dark:border-slate-700/50"
+                        name="password" placeholder="Enter Password" required>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
+
+                {{-- Confirm Password --}}
                 <div class="mt-4">
                     <label for="password_confirmation" class="label">Confirm Password</label>
                     <input type="password" id="password_confirmation"
@@ -45,17 +50,8 @@
                         placeholder="Enter Confirm Password" name="password_confirmation" required>
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
-                {{-- <div class="block mt-4">
-                    <label class="custom-label">
-                        <div
-                            class="bg-white border dark:bg-slate-700 dark:border-slate-600 border-slate-200 rounded w-4 h-4  inline-block leading-4 text-center -mb-[3px]">
-                            <input type="checkbox" class="hidden">
-                            <i class="fas fa-check hidden text-xs text-slate-700 dark:text-slate-300"></i>
-                        </div>
-                        <span class="text-sm text-slate-500 font-medium">By registering you agree to the T-Wind Terms of
-                            Use</span>
-                    </label>
-                </div> --}}
+
+                {{-- Register Button --}}
                 <div class="mt-6">
                     <button
                         class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
