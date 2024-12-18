@@ -717,37 +717,37 @@ input[type="checkbox"]:checked~ input[type="checkbox"]:checked~ input[type="chec
   right: 0px;
 }
 
-.form-control {
+.inputbox {
   display: block;
   width: 100%;
-  border-radius: 0.25rem;
+  border-radius: 0.25rem !important;
   border-width: 1px;
   --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  border-color: rgb(229 231 235 / var(--tw-border-opacity)) !important;
   --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
   padding: 0.625rem;
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.modal.form-control .modal-right {
+.modal.inputbox .modal-right {
   --tw-translate-x: 0px !important;
   --tw-translate-y: 0px !important;
   -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 
-.form-control:focus {
+.inputbox:focus {
   --tw-border-opacity: 1;
   border-color: rgb(99 102 241 / var(--tw-border-opacity));
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
 }
 
-.dark .form-control {
+.dark .inputbox {
   --tw-border-opacity: 1;
   border-color: rgb(71 85 105 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
@@ -756,39 +756,39 @@ input[type="checkbox"]:checked~ input[type="checkbox"]:checked~ input[type="chec
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.dark .form-control::-webkit-input-placeholder {
+.dark .inputbox::-webkit-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-.dark .form-control::-moz-placeholder {
+.dark .inputbox::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-.dark .form-control:-ms-input-placeholder {
+.dark .inputbox:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-.dark .form-control::-ms-input-placeholder {
+.dark .inputbox::-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-.dark .form-control::placeholder {
+.dark .inputbox::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-.dark .form-control:focus {
+.dark .inputbox:focus {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(129 140 248 / var(--tw-ring-opacity));
 }
 
-.dark .form-control:focus-visible {
+.dark .inputbox:focus-visible {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
@@ -1030,12 +1030,12 @@ input[type="checkbox"]:checked~ input[type="checkbox"]:checked~ input[type="chec
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
 }
 
-.form-control.error {
+.inputbox.error {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
-.form-control.success {
+.inputbox.success {
   --tw-border-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-border-opacity));
 }

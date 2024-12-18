@@ -18,8 +18,9 @@ use Modules\ItemManager\Http\Controllers\ItemsController;
 //     Route::resource('itemmanager', ItemManagerController::class)->names('itemmanager');
 // });
 
+Route::view('/dashboard', 'itemmanager::index')->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('items')->group(function () {
+Route::prefix('items')->middleware(['auth', 'verified'])->group(function () {
 
     Route::get('', [ItemsController::class, 'index'])->name('items.show');
     Route::get('/create/{id?}', [ItemsController::class, 'create'])->name('items.create');

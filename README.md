@@ -230,3 +230,23 @@ class IdRepeatForCategory implements ValidationRule
             'serve_latest_updates' => 'nullable|boolean'
         ];
 ```
+
+## Breeze implementation
+
+### 1. install laravel breeze using composer
+
+```bash
+composer require laravel/breeze --dev
+```
+
+### 2. publishes the authentication views, routes, controllers, and other resources to your application using following command
+
+```bash
+php artisan breeze:install
+```
+
+```bash
+php artisan migrate
+npm install
+npm run dev
+```

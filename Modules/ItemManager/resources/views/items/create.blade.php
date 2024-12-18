@@ -13,7 +13,7 @@
                     <div class="relative z-0 mb-6 w-full group">
                         <label for="item_id" class="label">Item Id</label>
                         <input type="text" name="item_id"
-                            class="form-control @error('item_id') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
+                            class="inputbox @error('item_id') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
                             value="{{ old('item_id', $editable->item_id ?? '') }}" placeholder="Item Id">
                         @error('item_id')
                             <div class="text-red-600">{{ $message }}</div>
@@ -22,7 +22,7 @@
                     <div class="relative z-0 mb-6 w-full group">
                         <label for="version" class="label">Version</label>
                         <input type="text" name="version"
-                            class="form-control @error('version') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
+                            class="inputbox @error('version') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
                             value="{{ old('version', $editable->version ?? '') }}" placeholder="Version">
                         @error('version')
                             <div class="text-red-600">{{ $message }}</div>
@@ -32,7 +32,7 @@
                 <div class="mb-6">
                     <label for="item_name" class="label">Item Name</label>
                     <input type="text" name="item_name"
-                        class="form-control @error('item_name') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
+                        class="inputbox @error('item_name') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
                         value="{{ old('item_name', $editable->item_name ?? '') }}" placeholder="Item Name">
                     @error('item_name')
                         <div class="text-red-600">{{ $message }}</div>
@@ -42,12 +42,14 @@
                     <div class="relative z-0 mb-6 w-full group">
                         <label for="category" class="label">Category</label>
                         <select name="category" id=""
-                            class="form-control @error('category') bg-red-50 border border-red-500 placeholder-red-700  @enderror">
+                            class="inputbox @error('category') bg-red-50 border border-red-500 placeholder-red-700  @enderror">
+                            {{ $category = $editable->category ?? '' }}
                             <option value="" selected disabled>select category</option>
-                            <option value="cloth">Cloth</option>
-                            <option value="food">Food</option>
-                            <option value="electronics">Electronics</option>
-                            <option value="toys">Toys</option>
+                            <option value="cloth" {{ $category == 'cloth' ? 'selected' : '' }}>Cloth</option>
+                            <option value="food" {{ $category == 'food' ? 'selected' : '' }}>Food</option>
+                            <option value="electronics" {{ $category == 'electronics' ? 'selected' : '' }}>Electronics
+                            </option>
+                            <option value="toys" {{ $category == 'toys' ? 'selected' : '' }}>Toys</option>
                         </select>
                         @error('category')
                             <div class="text-red-600">{{ $message }}</div>
@@ -56,7 +58,7 @@
                     <div class="relative mb-6 w-full group">
                         <label for="color" class="label">Color</label>
                         <input name="color"
-                            class="form-control @error('color') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
+                            class="inputbox @error('color') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
                             value="{{ old('color', $editable->color ?? '') }}" data-huebee />
                         @error('color')
                             <div class="text-red-600">{{ $message }}</div>
@@ -66,7 +68,7 @@
                 <div class="mb-6">
                     <label for="image_thumbnail_link" class="label">Image Thumbnail Link</label>
                     <input type="text" name="image_thumbnail_link"
-                        class="form-control @error('image_thumbnail_link') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
+                        class="inputbox @error('image_thumbnail_link') bg-red-50 border border-red-500 placeholder-red-700  @enderror"
                         value="{{ old('image_thumbnail_link', $editable->image_thumbnail_link ?? '') }}"
                         placeholder="Image Thumbnail Link">
                     @error('image_thumbnail_link')
@@ -76,7 +78,7 @@
                 <div class="mb-6">
                     <label for="profile" class="label">Profile</label>
                     <input type="file" name="profile"
-                        class="form-control @error('profile') bg-red-50 border border-red-500 placeholder-red-700  @enderror">
+                        class="block w-full text-sm text-gray-900 bg-gray-50 rounded border border-gray-200 cursor-pointer p-1 dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('profile') bg-red-50 border border-red-500 placeholder-red-700  @enderror">
                     @error('profile')
                         <div class="text-red-600">{{ $message }}</div>
                     @enderror
