@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('items_master', function (Blueprint $table) {
+            
             $table->id();
             $table->string('item_id', 100);
             $table->string('item_name', 255);
