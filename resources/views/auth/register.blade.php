@@ -51,6 +51,18 @@
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 
+                {{-- TimeZone --}}
+                <div class="mt-4">
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">TimeZone</label>
+                    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-400 dark:focus:border-blue-400 dark:focus-visible:outline-none" name="timezone">
+                        <option value="" selected disabled>United States</option>
+                        <option value="india">India</option>
+                        <option value="canada">Canada</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                    </select>
+                </div>
+
                 {{-- Register Button --}}
                 <div class="mt-6">
                     <button
