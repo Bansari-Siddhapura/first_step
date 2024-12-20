@@ -56,3 +56,8 @@ php artisan serve
 ```bash
 npm run dev
 ```
+
+## Eloquent Relationship
+
+### OneToMany Relationship :
+

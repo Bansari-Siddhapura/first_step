@@ -18,6 +18,18 @@
                         <i class="ti ti-template mr-1 pb-1 text-lg"></i><a href="{{ route('items.show') }}">Item
                             Management</a> </button>
                 </li>
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle flex w-full items-center border-b border-gray-800 py-2 px-3 font-medium md:border-0 md:p-0">
+                        <i class="ti ti-template mr-1 pb-1 text-lg"></i><a href="{{ route('clients.show') }}">Clients
+                            </a> </button>
+                </li>
+                <li class="dropdown">
+                    <button
+                        class="dropdown-toggle flex w-full items-center border-b border-gray-800 py-2 px-3 font-medium md:border-0 md:p-0">
+                        <i class="ti ti-template mr-1 pb-1 text-lg"></i><a href="{{ route('projects.show') }}">Projects
+                            </a> </button>
+                </li>
             </ul>
         </div>
         <div class="order-1 ml-auto flex items-center md:order-2">

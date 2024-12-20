@@ -20,6 +20,9 @@
                         <th scope="col" class="px-6 py-3">
                             Item Id
                         </th>
+                        {{-- <th scope="col" class="px-6 py-3">
+                            Client Id
+                        </th> --}}
                         <th scope="col" class="px-6 py-3">
                             Item Name
                         </th>

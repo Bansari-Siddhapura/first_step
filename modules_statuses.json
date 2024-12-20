@@ -1,3 +1,5 @@
 {
-    "ItemManager": true
+    "ItemManager": true,
+    "Clients": true,
+    "Projects": true
 }

@@ -4,6 +4,8 @@ namespace Modules\ItemManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Clients\Models\Client;
+
 // use Modules\ItemManager\Database\Factories\ItemMasterFactory;
 
 class ItemMaster extends Model
@@ -21,12 +23,13 @@ class ItemMaster extends Model
         'version',
         'category',
         'color',
+        'client_id',
         'image_thumbnail_link',
         'license_update',
         'serve_latest_updates'
     ];
 
-    public $timestamps = false;
+    // public $timestamps = true;
 
     // protected static function newFactory(): ItemMasterFactory
     // {
