@@ -12,8 +12,10 @@ class ClientsController extends Controller
     // show all clients
     public function index()
     {
-        $clients = Client::paginate(5);
+        //$clients = Client::paginate(5);
         //dd($clients);
+        $clients=Client::with('projects')->get();
+        //$client->projects;
         return view('clients::clients.show', compact('clients'));
     }
 
@@ -39,6 +41,7 @@ class ClientsController extends Controller
     //delete client
     public function destroy($id)
     {
+        // dd($id);
         $delete = Client::find($id)->delete();
         if ($delete) {
             flash()->option('position', 'bottom-right')->option('timeout', 3000)->info('Client deleted successfully');

@@ -24,5 +24,5 @@ Route::prefix('projects')->middleware(['auth', 'verified'])->group(function () {
     Route::get('', [ProjectsController::class, 'index'])->name('projects.show');
     Route::post('/store',[ProjectsController::class,'store'])->name('projects.store');
     Route::get('/create/{id?}', [ProjectsController::class, 'create'])->name('projects.create');
-    // Route::get('/destroy/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy');
+    Route::get('/destroy/{id}', [ProjectsController::class, 'destroy'])->name('projects.destroy');
 });

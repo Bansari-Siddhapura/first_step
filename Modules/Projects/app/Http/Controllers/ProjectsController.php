@@ -5,6 +5,8 @@ namespace Modules\Projects\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Projects\Models\Project;
+use Modules\Clients\Models\Client;
+use Modules\Projects\Http\Requests\ProjectsRequest;
 
 class ProjectsController extends Controller
 {
@@ -13,9 +15,11 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('client')->get();
-        dd($projects);
-        return view('projects::projects.show');
+       $projects = Project::with('client')->get();
+       //dd($projects);
+    //  $projects= Project::find(1);
+    //   dd($projects->client);
+        return view('projects::projects.show',compact('projects'));
     }
 
     /**
@@ -23,47 +27,34 @@ class ProjectsController extends Controller
      */
     public function create($id = null)
     {
-
-        return view('projects::projects.create');
+        $clients = Client::all();
+        $project =  $id ? Project::find($id) : '';
+        return view('projects::projects.create',compact('clients','project'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectsRequest $request)
     {
-        //
+        $data=$request->all();
+        //dd($data);
+         $message = $data['id'] ? 'project data updated' : 'project data created';
+        $success=Project::updateOrCreate(['id'=>$data['id']],$data);
+        if ($success) {
+            flash()->option('position', 'bottom-right')->option('timeout', 3000)->success($message);
+        }
+        return redirect()->route('projects.show');
     }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('projects::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('projects::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    //delete project
     public function destroy($id)
     {
-        //
+        //dd($id);
+        $delete=Project::find($id)->delete();
+        if($delete){
+            flash()->option('position', 'bottom-right')->option('timeout', 3000)->info('Project deleted successfully');
+        }
+        return redirect()->route('projects.show');
     }
 }

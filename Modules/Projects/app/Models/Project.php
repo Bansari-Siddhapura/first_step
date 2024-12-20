@@ -18,7 +18,7 @@ class Project extends Model
     protected $fillable = [
         'id',
         'project_name',
-        'client'
+        'client_id'
     ];
 
     public function client()

@@ -28,29 +28,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($clients as $client)
+                        @foreach ($projects as $project)
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-900/20">
                                 <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                    {{ $client->id }}
+                                    {{ $project->id }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $client->name }}
+                                    {{ $project->project_name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $client->city }}
+                                   {{$project->client->name}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('clients.create', ['id' => $client->id]) }}"
+                                    <a href="{{route('projects.create',['id'=>$project->id])}}"
                                         class="font-medium text-blue-600 dark:text-blue-500 text-lg"><i
                                             class="ti ti-pencil "></i></a>
-                                    <a href="{{ route('clients.destroy', ['id' => $client->id]) }}"
+                                    <a href="{{route('projects.destroy',['id'=>$project->id])}}"
                                         class="font-medium text-blue-600 dark:text-blue-500 text-lg text-red-600"
                                         name="delete"><i class="ti ti-trash"></i></a>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
                 <!-- pagination -->

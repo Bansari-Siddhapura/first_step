@@ -23,9 +23,9 @@ class Client extends Model
         'city'
     ];
 
-    public function project() : HasMany
+    public function projects()
     {
-        return $this->hasMany(Project::class,'client','id');
+        return $this->hasMany(Project::class,'client_id','id');
     }
 
     // protected static function newFactory(): ClientFactory

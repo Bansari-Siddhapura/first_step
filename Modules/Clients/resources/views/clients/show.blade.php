@@ -23,6 +23,9 @@
                                 City
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Projects
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Actions
                             </th>
                         </tr>
@@ -41,6 +44,14 @@
                                 <td class="px-6 py-4">
                                     {{ $client->city }}
                                 </td>
+                              
+                                <td class="px-6 py-4">
+
+                                    @foreach($client->projects as $projects)
+                                            {{' | ' .$projects->project_name . ' | '}}
+                                    @endforeach
+                            
+                                </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('clients.create', ['id' => $client->id]) }}"
                                         class="font-medium text-blue-600 dark:text-blue-500 text-lg"><i
@@ -54,9 +65,9 @@
                     </tbody>
                 </table>
                 <!-- pagination -->
-                <div class="my-3">
+                {{-- <div class="my-3">
                     {{ $clients->links() }}
-                </div>
+                </div> --}}
             </div>
         </div><!--end card-body-->
     </div> <!--end card-->
