@@ -3,6 +3,7 @@
 namespace Modules\ItemManager\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\ItemManager\Models\ItemMaster;
 
 class ItemManagerDatabaseSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ItemManagerDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([]);
+       
     }
 }
